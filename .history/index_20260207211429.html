@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蟹江お散歩バス時刻表</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚌 蟹江お散歩バス時刻表</h1>
+            <p class="subtitle">Kanie Walking Bus Timetable</p>
+        </header>
+
+        <div class="route-selector">
+            <button class="route-btn active" data-route="orange">
+                <span class="route-icon">🟠</span>
+                オレンジルート
+            </button>
+            <button class="route-btn" data-route="green">
+                <span class="route-icon">🟢</span>
+                グリーンルート
+            </button>
+            <button class="route-btn" data-route="sunday">
+                <span class="route-icon">🔵</span>
+                日曜・祝日ルート
+            </button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="stopSearch" placeholder="🔍 バス停名で検索...">
+        </div>
+
+        <div class="info-panel">
+            <div class="current-time">
+                現在時刻: <span id="currentTime"></span>
+            </div>
+            <div class="next-bus">
+                次のバス: <span id="nextBus">--:--</span>
+            </div>
+        </div>
+
+        <div id="timetableContainer" class="timetable-container">
+            <!-- Timetable will be inserted here -->
+        </div>
+
+        <footer>
+            <p>※ 時刻表は予告なく変更される場合があります</p>
+            <p>※ 道路状況により遅延する場合があります</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
