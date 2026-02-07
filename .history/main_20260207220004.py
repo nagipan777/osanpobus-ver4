@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, Response, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 import os
 import json
 
@@ -9,24 +10,18 @@ app = FastAPI(title="蟹江お散歩バス時刻表")
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # ルートパスでindex.htmlを返す
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 async def read_root():
-    with open(os.path.join(current_dir, "index.html"), "r", encoding="utf-8") as f:
-        content = f.read()
-    return HTMLResponse(content=content)
+    return FileResponse(os.path.join(current_dir, "index.html"), media_type="text/html")
 
 # 静的ファイル（CSS, JS, JSON）を配信
 @app.get("/style.css")
 async def get_css():
-    with open(os.path.join(current_dir, "style.css"), "r", encoding="utf-8") as f:
-        content = f.read()
-    return Response(content=content, media_type="text/css")
+    return FileResponse(os.path.join(current_dir, "style.css"), media_type="text/css")
 
 @app.get("/app.js")
 async def get_js():
-    with open(os.path.join(current_dir, "app.js"), "r", encoding="utf-8") as f:
-        content = f.read()
-    return Response(content=content, media_type="application/javascript")
+    return FileResponse(os.path.join(current_dir, "app.js"), media_type="application/javascript")
 
 @app.get("/timetable_data.json")
 async def get_data():
